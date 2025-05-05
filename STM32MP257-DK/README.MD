@@ -22,9 +22,11 @@ This demo provides instructions on configuring and using the Avnet /IOTCONNECT c
 ## Hardware Requirements
 
 - **STM32MP257F Discovery Kit**  
+
 ![STM32MP257F Discovery Kit](https://www.st.com/bin/ecommerce/api/image.PF275987.en.feature-description-include-personalized-no-cpn-medium.jpg)
 
 - **Camera module compatible with STM32MP257F** (recommended IMX335)
+
 ![B-CAMS-IMX](https://estore.st.com/media/catalog/product/p/f/pf275440_m.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=&width=)
 
 - **5V External Power Supply** (Required due to high current draw with camera and ISP)
