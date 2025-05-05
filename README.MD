@@ -4,7 +4,7 @@ This repository demonstrates how to remotely control and monitor the Image Signa
 
 Currently supported hardware platforms:
 
-- [STM32MP257F Discovery Kit](./STM32MP257-DK/README.md)
+- [STM32MP257F Discovery Kit](./STM32MP257-DK/README.MD)
 - *STM32N6 (planned future support)*
 
 ---
