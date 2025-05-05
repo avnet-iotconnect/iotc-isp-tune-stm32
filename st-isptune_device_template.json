@@ -1,0 +1,283 @@
+{
+    "code": "STisptune",
+    "name": "st-isptune",
+    "authType": 2,
+    "attributes": [
+        {
+            "name": "sdk_version",
+            "type": "STRING",
+            "description": "IoTConnect SDK version",
+            "unit": "",
+            "aggregateTypes": []
+        },
+        {
+            "name": "random",
+            "type": "INTEGER",
+            "description": "Random number, just to prove telemetry is being sent",
+            "unit": "",
+            "aggregateTypes": []
+        },
+        {
+            "name": "exposure",
+            "type": "INTEGER",
+            "description": "Sensor exposure value (microseconds)",
+            "unit": "microseconds",
+            "aggregateTypes": []
+        },
+        {
+            "name": "awb_profile",
+            "type": "STRING",
+            "description": "",
+            "unit": "",
+            "aggregateTypes": []
+        },
+        {
+            "name": "awb_temperature",
+            "type": "INTEGER",
+            "description": "Current AWB color temperature",
+            "unit": "Kelvin",
+            "aggregateTypes": []
+        },
+        {
+            "name": "avg_red",
+            "type": "INTEGER",
+            "description": "Average red channel value",
+            "unit": "",
+            "aggregateTypes": []
+        },
+        {
+            "name": "avg_green",
+            "type": "INTEGER",
+            "description": "Average green channel value",
+            "unit": "",
+            "attributeColor": "#194d33",
+            "aggregateTypes": []
+        },
+        {
+            "name": "avg_blue",
+            "type": "INTEGER",
+            "description": "Average blue channel value",
+            "unit": "",
+            "attributeColor": "#0062b1",
+            "aggregateTypes": []
+        },
+        {
+            "name": "avg_luminance",
+            "type": "INTEGER",
+            "description": "",
+            "unit": "",
+            "aggregateTypes": []
+        },
+        {
+            "name": "luminance",
+            "type": "OBJECT",
+            "description": "Luminance contrast values (lum_0 to lum_256)",
+            "childs": [
+                {
+                    "name": "lum_0",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "lum_32",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "lum_64",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "lum_96",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "lum_128",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "lum_160",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "lum_192",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "lum_224",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "lum_256",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                }
+            ],
+            "aggregateTypes": []
+        },
+        {
+            "name": "histogram",
+            "type": "OBJECT",
+            "description": "Histogram bins (bin_0 to bin_11)",
+            "childs": [
+                {
+                    "name": "bin_0",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "bin_1",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "bin_2",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "bin_3",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "bin_4",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "bin_5",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "bin_6",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "bin_7",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "bin_8",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "bin9",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "bin_10",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                },
+                {
+                    "name": "bin_11",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": ""
+                }
+            ],
+            "aggregateTypes": []
+        }
+    ],
+    "commands": [
+        {
+            "name": "Get ISP Settings",
+            "command": "get-isp-settings",
+            "requiredParam": false,
+            "requiredAck": true,
+            "isOTACommand": false
+        },
+        {
+            "name": "stop-stream",
+            "command": "stop-stream",
+            "requiredParam": false,
+            "requiredAck": true,
+            "isOTACommand": false
+        },
+        {
+            "name": "Set Contrast",
+            "command": "set-contrast",
+            "requiredParam": true,
+            "requiredAck": true,
+            "isOTACommand": false
+        },
+        {
+            "name": "start-stream",
+            "command": "start-stream",
+            "requiredParam": false,
+            "requiredAck": true,
+            "isOTACommand": false
+        },
+        {
+            "name": "set-exposure",
+            "command": "set-exposure",
+            "requiredParam": true,
+            "requiredAck": true,
+            "isOTACommand": false
+        }
+    ],
+    "messageVersion": "2.1",
+    "msgCode": "XG4ELHP",
+    "capability": "0",
+    "properties": {
+        "description": null,
+        "dataFrequency": "5",
+        "fileSupport": false
+    },
+    "_meta": {
+        "version": "2.0"
+    }
+}
