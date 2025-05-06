@@ -208,7 +208,7 @@
                     "attributeColor": ""
                 },
                 {
-                    "name": "bin9",
+                    "name": "bin_9",
                     "type": "INTEGER",
                     "description": "",
                     "unit": "",
@@ -230,9 +230,144 @@
                 }
             ],
             "aggregateTypes": []
+        },
+        {
+            "name": "sensor_gain",
+            "type": "DECIMAL",
+            "description": "Current sensor gain in dB",
+            "unit": "dB",
+            "aggregateTypes": []
+        },
+        {
+            "name": "isp_gain",
+            "type": "OBJECT",
+            "description": "",
+            "childs": [
+                {
+                    "name": "R",
+                    "type": "DECIMAL",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": "#f44e3b"
+                },
+                {
+                    "name": "B",
+                    "type": "DECIMAL",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": "#0062b1"
+                },
+                {
+                    "name": "G",
+                    "type": "DECIMAL",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": "#68bc00"
+                }
+            ],
+            "aggregateTypes": []
+        },
+        {
+            "name": "black_level",
+            "type": "OBJECT",
+            "description": "",
+            "childs": [
+                {
+                    "name": "R",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": "#f44e3b"
+                },
+                {
+                    "name": "B",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": "#0062b1"
+                },
+                {
+                    "name": "G",
+                    "type": "INTEGER",
+                    "description": "",
+                    "unit": "",
+                    "attributeColor": "#68bc00"
+                }
+            ],
+            "aggregateTypes": []
+        },
+        {
+            "name": "aec_enabled",
+            "type": "BOOLEAN",
+            "description": "Indicates if Auto Exposure Control is enabled",
+            "unit": "",
+            "aggregateTypes": []
+        },
+        {
+            "name": "aec_exposure_compensation",
+            "type": "DECIMAL",
+            "description": "Current exposure compensation (-2 to +2 EV)",
+            "unit": "",
+            "aggregateTypes": []
+        },
+        {
+            "name": "awb_enabled",
+            "type": "BOOLEAN",
+            "description": "Indicates if Auto White Balance is enabled",
+            "unit": "",
+            "aggregateTypes": []
+        },
+        {
+            "name": "demosaicing_enabled",
+            "type": "BOOLEAN",
+            "description": "Indicates if demosaicing is enabled",
+            "unit": "",
+            "aggregateTypes": []
         }
     ],
     "commands": [
+        {
+            "name": "Set Auto Exposure Compensation",
+            "command": "set-aec-compensation",
+            "requiredParam": true,
+            "requiredAck": true,
+            "isOTACommand": false
+        },
+        {
+            "name": "Set ISP Gain",
+            "command": "set-isp-gain",
+            "requiredParam": true,
+            "requiredAck": true,
+            "isOTACommand": false
+        },
+        {
+            "name": "Set Black Level",
+            "command": "set-black-level",
+            "requiredParam": true,
+            "requiredAck": true,
+            "isOTACommand": false
+        },
+        {
+            "name": "Enable/Disable auto white balance (AWB)",
+            "command": "set-awb",
+            "requiredParam": true,
+            "requiredAck": true,
+            "isOTACommand": false
+        },
+        {
+            "name": "Set Gain",
+            "command": "set-gain",
+            "requiredParam": true,
+            "requiredAck": true,
+            "isOTACommand": false
+        },
+        {
+            "name": "Enable/Disable Demosaicing",
+            "command": "set-demosaicing",
+            "requiredParam": true,
+            "requiredAck": true,
+            "isOTACommand": false
+        },
         {
             "name": "Get ISP Settings",
             "command": "get-isp-settings",
@@ -262,7 +397,14 @@
             "isOTACommand": false
         },
         {
-            "name": "set-exposure",
+            "name": "Enable/Disable Auto Exposure Control",
+            "command": "set-aec",
+            "requiredParam": true,
+            "requiredAck": true,
+            "isOTACommand": false
+        },
+        {
+            "name": "Set Exposure",
             "command": "set-exposure",
             "requiredParam": true,
             "requiredAck": true,
