@@ -23,7 +23,7 @@ This demo provides instructions on configuring and using the Avnet /IOTCONNECT c
 
 - **STM32MP257F Discovery Kit**  
 
-![STM32MP257F Discovery Kit](./mp2DK.jpg)
+  ![STM32MP257F Discovery Kit](./mp2DK.jpg)
 
 - **Camera module compatible with STM32MP257F** (recommended IMX335)
 
