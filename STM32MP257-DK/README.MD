@@ -23,11 +23,11 @@ This demo provides instructions on configuring and using the Avnet /IOTCONNECT c
 
 - **STM32MP257F Discovery Kit**  
 
-  ![STM32MP257F Discovery Kit](./mp2DK.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=&width=)
+  <img src="./mp2DK.jpg" alt="drawing" width="200"/>  
 
 - **Camera module compatible with STM32MP257F** (recommended IMX335)
 
-![B-CAMS-IMX](https://estore.st.com/media/catalog/product/p/f/pf275440_m.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=&width=)
+  <img src="https://estore.st.com/media/catalog/product/p/f/pf275440_m.jpg" alt="drawing" width="200"/>  
 
 - **5V External Power Supply** (Required due to high current draw with camera and ISP)
 
