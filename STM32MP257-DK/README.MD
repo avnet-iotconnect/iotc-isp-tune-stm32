@@ -13,8 +13,9 @@ This demo provides instructions on configuring and using the Avnet /IOTCONNECT c
     - [/IOTCONNECT SDK Setup](#iotconnect-sdk-setup)
   - [Running the ISP Cloud Control Demo](#running-the-isp-cloud-control-demo)
     - [Step-by-Step Guide](#step-by-step-guide)
-  - [Available Commands from IoTConnect Cloud](#available-commands-from-iotconnect-cloud)
+  - [Available Commands from /IOTCONNECT Cloud](#available-commands-from-iotconnect-cloud)
   - [Telemetry Data Sent to /IOTCONNECT](#telemetry-data-sent-to-iotconnect)
+  - [Example Command Sequence for Testing](#example-command-sequence-for-testing)
   - [Relevant Images and Documentation](#relevant-images-and-documentation)
 
 --- 
@@ -95,36 +96,82 @@ python3 isp-cloud-control.py
 
 ---
 ## Available Commands from IoTConnect Cloud
-| Command                | Parameters                           | Example                        | Description                               |
-| ---------------------- | ------------------------------------ | ------------------------------ | ----------------------------------------- |
-| `start-stream`         | None                                 | `start-stream`                 | Starts video streaming                    |
-| `stop-stream`          | None                                 | `stop-stream`                  | Stops video streaming                     |
-| `set-exposure`         | Integer (in microseconds)            | `set-exposure 33000`           | Sets sensor exposure                      |
-| `set-contrast`         | 9 integers (space-separated)         | `set-contrast 256 256 128 ...` | Sets luminance contrast                   |
-| `set-gain`             | Float or integer (sensor gain in dB) | `set-gain 4`                   | Sets sensor gain                          |
-| `set-awb`              | String (`enable` or `disable`)       | `set-awb enable`               | Enables/Disables auto white balance (AWB) |
-| `set-black-level`      | 3 integers for RGB values            | `set-black-level 16 16 16`     | Sets black level correction               |
-| `set-isp-gain`         | 3 floats (R, G, B gains)             | `set-isp-gain 1.0 1.2 1.1`     | Adjusts ISP gain                          |
-| `set-aec`              | String (`enable` or `disable`)       | `set-aec enable`               | Enables/Disables Auto Exposure Control    |
-| `set-aec-compensation` | Float (-2 to +2 EV)                  | `set-aec-compensation 0.5`     | Sets exposure compensation                |
-| `set-demosaicing`      | String (`enable` or `disable`)       | `set-demosaicing enable`       | Enables/Disables ISP demosaicing          |
-| `get-isp-settings`     | None                                 | `get-isp-settings`             | Returns current ISP settings as telemetry |
+
+| Command                | Parameters                          | Example                                 | Description                               |
+|------------------------|-------------------------------------|-----------------------------------------|-------------------------------------------|
+| `start-stream`         | None                                | `start-stream`                          | Starts video streaming                    |
+| `stop-stream`          | None                                | `stop-stream`                           | Stops video streaming                     |
+| `set-exposure`         | Integer (microseconds)              | `set-exposure 33000`                    | Sets sensor exposure                      |
+| `set-contrast`         | 9 integers (space-separated)        | `set-contrast 256 256 128 128 128 128 128 128 128` | Sets luminance contrast                   |
+| `set-gain`             | Float or integer (sensor gain in dB)| `set-gain 4`                            | Sets sensor gain                          |
+| `set-awb`              | String (`enable` or `disable`)      | `set-awb disable`                       | Enables/Disables auto white balance (AWB) |
+| `set-black-level`      | 3 integers for RGB values           | `set-black-level 16 16 16`              | Sets black level correction               |
+| `set-isp-gain`         | 3 floats (R, G, B gains, 0.1–2.45)  | `set-isp-gain 1.2 1.0 1.4`              | Adjusts ISP gain (scaled internally to Q0.31 fixed-point format) |
+| `set-aec`              | String (`enable` or `disable`)      | `set-aec disable`                       | Enables/Disables Auto Exposure Control    |
+| `set-aec-compensation` | Float (-2 to +2 EV)                 | `set-aec-compensation 0.5`              | Sets exposure compensation                |
+| `set-demosaicing`      | String (`enable` or `disable`)      | `set-demosaicing enable`                | Enables/Disables ISP demosaicing          |
+| `get-isp-settings`     | None                                | `get-isp-settings`                      | Returns current ISP settings as telemetry |
+
 
 ## Telemetry Data Sent to /IOTCONNECT
-| Telemetry Field   | Data Type         | Description                             |
-| ----------------- | ----------------- | --------------------------------------- |
-| `sdk_version`     | String            | SDK version                             |
-| `exposure`        | Integer           | Sensor exposure time (µs)               |
-| `awb_profile`     | String            | Current AWB profile                     |
-| `awb_temperature` | Integer           | AWB color temperature (K)               |
-| `avg_red`         | Integer           | Average red channel value               |
-| `avg_green`       | Integer           | Average green channel value             |
-| `avg_blue`        | Integer           | Average blue channel value              |
-| `avg_luminance`   | Integer           | Average luminance value                 |
-| `luminance`       | Object (integers) | Luminance values (`lum_0` to `lum_256`) |
-| `histogram`       | Object (integers) | Histogram bins (`bin_0` to `bin_11`)    |
+| Telemetry Field        | Data Type         | Example Value          | Description                             |
+|------------------------|-------------------|------------------------|-----------------------------------------|
+| `sdk_version`          | String            | `"1.1.0"`              | SDK version                             |
+| `exposure`             | Integer           | `33274`                | Sensor exposure time (µs)               |
+| `sensor_gain`          | Float             | `19.82`                | Sensor gain (in dB)                     |
+| `isp_gain`             | Object (floats)   | `{ "R": 1.4, "G": 1.0, "B": 2.75 }` | ISP gains (scaled from Q0.31 internally)|
+| `black_level`          | Object (integers) | `{ "R": 12, "G": 12, "B": 12 }`   | Black level RGB corrections             |
+| `aec_enabled`          | Boolean           | `true`                 | Auto Exposure Control status            |
+| `aec_exposure_compensation`| Float         | `0.5`                  | AEC exposure compensation (EV)          |
+| `awb_enabled`          | Boolean           | `false`                | Auto White Balance status               |
+| `demosaicing_enabled`  | Boolean           | `true`                 | ISP Demosaicing status                  |
+| `awb_profile`          | String            | `"IMX335-A"`           | Current AWB profile                     |
+| `awb_temperature`      | Integer           | `2856`                 | AWB color temperature (K)               |
+| `avg_red`              | Integer           | `55`                   | Average red channel value               |
+| `avg_green`            | Integer           | `52`                   | Average green channel value             |
+| `avg_blue`             | Integer           | `55`                   | Average blue channel value              |
+| `avg_luminance`        | Integer           | `53`                   | Average luminance value                 |
+| `luminance`            | Object (integers) | `{ "lum_0":100, ..., "lum_256":100 }` | Luminance distribution                  |
+| `histogram`            | Object (integers) | `{ "bin_0":0, ..., "bin_11":0 }`      | Histogram data                          |
 
 --- 
+
+## Example Command Sequence for Testing
+
+1. Disable AWB and AEC:
+```bash
+set-awb disable
+set-aec disable
+```
+
+2. Set ISP Gains:
+```bash
+set-isp-gain 1.2 1.0 1.4
+```
+
+3. Adjust Exposure and Gain:
+```bash
+set-exposure 33000
+set-gain 4
+```
+
+4. Adjust AEC Compensation:
+```bash
+set-aec-compensation 0.5
+```
+
+5. Retrieve current ISP settings:
+```bash
+get-isp-settings
+```
+
+---
+
+## Notes
+- Ensure numeric parameters (e.g., ISP gain) are sent in proper floating-point format (e.g., `1.2` instead of `1/2`).
+- Incorrectly formatted values will be handled gracefully with error messages.
+
+---
 ## Relevant Images and Documentation
 
 - **STM32MP257 Discovery Kit Official Page:**  
